@@ -44,11 +44,10 @@ impl<
     }
 
     pub(crate) fn get(&self, key: &TKey) -> Option<TData> {
-        self.map.read().get(key).cloned().map(|data| {
+        self.map.read().get(key).cloned().inspect(|_data| {
             self.counters.get_counts.fetch_add(1, Ordering::Relaxed);
-            data
         })
-    }
+    }      
 
     pub(crate) fn insert(&self, key: TKey, data: TData) {
         if self.size == 0 {
