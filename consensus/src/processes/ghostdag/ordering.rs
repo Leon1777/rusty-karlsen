@@ -13,7 +13,7 @@ use crate::model::{
 
 use super::protocol::GhostdagManager;
 
-#[derive(Eq, Clone, Serialize, Deserialize)]
+#[derive(Eq, Clone, Serialize, Deserialize, Debug)]
 pub struct SortableBlock {
     pub hash: Hash,
     pub blue_work: BlueWorkType,
