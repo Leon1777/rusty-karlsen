@@ -218,7 +218,7 @@ fn get_dataset_item(index: usize) -> Hash1024 {
     if FISHHASH_FULL_DATASET.load(Ordering::Relaxed) {
         let dataset = FULL_DATASET.get_or_init(|| {
             let mut full_dataset = vec![Hash1024::new(); FULL_DATASET_NUM_ITEMS as usize].into_boxed_slice();
-            prebuild_dataset(&mut full_dataset, &LIGHT_CACHE, num_cpus::get_physical());
+            prebuild_dataset(&mut full_dataset, &LIGHT_CACHE, num_cpus::get());
             full_dataset
         });
         dataset[index]
